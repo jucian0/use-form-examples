@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import * as yup from 'yup'
 import './styles.css'
-import { FormContext, useContextForm, useFormTest } from '@forms/useform'
+import { FormContext, useFormContext, useForm } from 'useforms'
 
 type Form = {
   name: string,
@@ -28,19 +28,24 @@ const initialValues = {
 
 function Form2() {
 
-  const { register, state } = useContextForm<typeof initialValues>()
+  const { register, state } = useFormContext<typeof initialValues>()
 
   return (
     <>
+    <h3>I'm another component</h3>
       <div>
-        <input placeholder="Last Name" {...register('lastName')} />
+        <input placeholder="Last Name" {...register('lastName')} />Brazil
         <span className="error">{state.touched?.name && state.errors?.name}</span>
+      </div>
+
+      <div>
+        <input type="radio" value="BRASIL" {...register('country')} />
+        <input type="radio" value="USA" {...register('country')} />
+        <input type="radio" value="CHILE" {...register('country')} />
       </div>
     </>
   )
 }
-
-
 
 
 const schemaValidation = yup.object().shape({
@@ -55,7 +60,7 @@ const schemaValidation = yup.object().shape({
 
 const App: React.FC = () => {
 
-  const { register, state, resetForm, setForm, setFieldsTouched, resetFieldsTouched, onSubmit, setFieldsValue, ...form } = useFormTest<Form>({
+  const { register, state, resetForm, setForm, setFieldsTouched, resetFieldsTouched, onSubmit, setFieldsValue, ...form } = useForm<Form>({
     initialValues,
     schemaValidation,
     isControlled: true,

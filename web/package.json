@@ -1,5 +1,5 @@
 {
-  "name": "@forms/web",
+  "name": "web",
   "version": "1.0.0",
   "main": "index.ts",
   "license": "MIT",
@@ -7,10 +7,10 @@
     "start": "webpack-dev-server --mode development"
   },
   "dependencies": {
-    "@forms/useform": "*",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-refresh": "^0.8.3"
+    "react-refresh": "^0.8.3",
+    "useforms": "./../../useform"
   },
   "devDependencies": {
     "@babel/core": "^7.10.5",
@@ -24,10 +24,10 @@
     "babel-loader": "^8.1.0",
     "css-loader": "4.3.0",
     "html-webpack-plugin": "^4.3.0",
+    "react-select": "3.1.0",
     "style-loader": "1.2.1",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.12",
-    "webpack-dev-server": "^3.11.0",
-    "react-select": "3.1.0"
+    "webpack-dev-server": "^3.11.0"
   }
 }
