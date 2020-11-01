@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
-import * as yup from 'yup'
 import './styles.css'
 import { FormContext, useFormContext, useForm } from 'useforms'
+import * as yup from 'yup'
 
 type Form = {
   name: string,
@@ -23,12 +23,15 @@ const initialValues = {
   score: 2,
   other: {
     test: 'juciano'
-  }
+  },
+  country:'USA',
+  accept:true,
+  option: 'value 2'
 }
 
 function Form2() {
 
-  const { register, state } = useFormContext<typeof initialValues>()
+  const { register, state, setFieldValue } = useFormContext<typeof initialValues>()
 
   return (
     <>
@@ -38,10 +41,27 @@ function Form2() {
         <span className="error">{state.touched?.name && state.errors?.name}</span>
       </div>
 
+      <div {...register('country')}>
+        <input type="radio" value="BRASIL" name="country"/>
+        <input type="radio" value="USA" name="country"/>
+        <input type="radio" value="CHILE" name="country" />
+      </div>
+
       <div>
-        <input type="radio" value="BRASIL" {...register('country')} />
-        <input type="radio" value="USA" {...register('country')} />
-        <input type="radio" value="CHILE" {...register('country')} />
+        <input type="checkbox" {...register('accept')}/>
+      </div>
+
+      <div>
+        <button onClick={()=>setFieldValue('accept', false)}>set Accept</button>
+      </div>
+
+      <div>
+        <select {...register('option')}>
+          <option value="value 1">1</option>
+          <option value="value 2">2</option>
+          <option value="value 3">3</option>
+          <option value="value 4">4</option>
+        </select>
       </div>
     </>
   )
@@ -90,7 +110,7 @@ const App: React.FC = () => {
   }
 
   useEffect(() => {
-    console.log(state)
+  //  console.log(state.values)
   }, [state])
 
   return (
